@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="row">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th class="col-xs-4">{{header.name}}</th>
+                    <th class="col-xs-4">{{header.surname}}</th>
+                    <th class="col-xs-4">{{header.birthday}}</th>
+                </tr>
+            </thead>
+            <tbody id="table-content">
+                <tr *ngFor="let person of personsArray"
+                    (keyup.enter)="toggleDisplayMode(person)">
+                    <td tabindex="1">
+                        <span *ngIf="!person.isActive">
+                            {{person.name}}
+                        </span>  
+                        <data-input [personProperty]="person.name" 
+                            (keyup.escape)="toggleDisplayMode(person)"
+                            *ngIf="person.isActive"
+                            (editEvent)="saveEditedItem($event, person, person.name)">
+                        </data-input>
+                    </td>
+                    <td tabindex="2">
+                        <span *ngIf="!person.isActive">
+                            {{person.surname}}
+                        </span> 
+                        <data-input [personProperty]="person.surname"
+                            (keyup.escape)="toggleDisplayMode(person)"
+                            *ngIf="person.isActive"
+                            (editEvent)="saveEditedItem($event, person, person.surname)">
+                        </data-input>
+                    </td>
+                    <td tabindex="3">
+                        <span *ngIf="!person.isActive">
+                            {{person.birthday}}
+                        </span> 
+                        <data-input [personProperty]="person.birthday"
+                            (keyup.escape)="toggleDisplayMode(person)"
+                            *ngIf="person.isActive"
+                            (editEvent)="saveEditedItem($event, person, person.birthday)">
+                        </data-input>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+
